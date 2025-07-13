@@ -1,0 +1,25 @@
+<nav class="flex flex-col gap-10 p-5">
+    <ng-container *ngIf="breadcrumbs$ | async as breadcrumbs">
+        <ol class="flex items-center gap-4">
+            <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last">
+                <ng-container *ngIf="!last">
+                    <li>
+                        <div class="flex items-center font-medium opacity-60 transition-all duration-300 hover:text-indigo-600 hover:opacity-90 transition">
+                            <a [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+                        </div>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="last">
+                     <li class="inline-flex">
+                        <div class="flex items-center gap-2 font-medium transition-all duration-300 hover:text-blue-600">
+                            <svg class="h-3 w-3 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                            <span class="text-indigo-600 font-semibold">{{ breadcrumb.label }}</span>
+                        </div>
+                    </li>
+                </ng-container>
+            </ng-container>
+        </ol>
+    </ng-container>
+</nav>
