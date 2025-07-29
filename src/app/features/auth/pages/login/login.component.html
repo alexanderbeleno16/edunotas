@@ -8,8 +8,8 @@
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-6">
         <div class="relative">
-            <label class="ml-4 text-sm font-bold text-gray-700 tracking-wide">Usuario</label>
-            <input 
+            <label for="loginusername" class="ml-4 text-sm font-bold text-gray-700 tracking-wide">Usuario</label>
+            <input id="loginusername"
                 formControlName="username"
                 autocomplete="username" 
                 class="w-full text-base px-4 py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
@@ -22,16 +22,16 @@
                     @if (username?.errors?.['required']) {
                         <span>El usuario es requerido</span>
                     }
-                    @if (username?.errors?.['minlength']) {
-                        <span>El usuario debe tener al menos 3 caracteres</span>
+                    @if (username?.errors?.['maxlength']) {
+                        <span>El usuario debe tener maximo {{maxLengthUsername}} caracteres</span>
                     }
                 </div>
             }
         </div>
 
         <div class="mt-8 content-center">
-            <label class="ml-4 text-sm font-bold text-gray-700 tracking-wide">Contraseña</label>
-            <input 
+            <label for="loginpassword" class="ml-4 text-sm font-bold text-gray-700 tracking-wide">Contraseña</label>
+            <input id="loginpassword"
                 formControlName="password"
                 autocomplete="current-password" 
                 class="w-full content-center text-base px-4 py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
@@ -45,7 +45,7 @@
                         <span>La contraseña es requerida</span>
                     }
                     @if (password?.errors?.['minlength']) {
-                        <span>La contraseña debe tener al menos 6 caracteres</span>
+                        <span>La contraseña debe tener al menos {{minLengthPassword}} caracteres</span>
                     }
                 </div>
             }
@@ -55,10 +55,10 @@
             <div class="flex items-center">
                 <input 
                     formControlName="rememberMe"
-                    id="remember_me" 
+                    id="rememberme" 
                     type="checkbox" 
                     class="h-4 w-4 bg-blue-500 focus:ring-blue-400 border-gray-300 rounded cursor-pointer">
-                <label for="remember_me" class="ml-2 block text-sm text-gray-500 cursor-pointer">Recuérdame</label>
+                <label for="rememberme" class="ml-2 block text-sm text-gray-500 cursor-pointer">Recuérdame</label>
             </div>
             <div class="text-sm">
                 <a routerLink="/auth/forgot-password" class="text-indigo-400 hover:text-blue-500">¿Olvidaste tu contraseña?</a>

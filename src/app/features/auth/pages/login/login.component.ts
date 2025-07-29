@@ -28,6 +28,8 @@ export class LoginComponent implements OnDestroy {
 
   loginForm: FormGroup;
   isLoading = false;
+  readonly maxLengthUsername = 10;
+  readonly minLengthPassword = 6;
 
   constructor() {
     this.loginForm = this.createForm();
@@ -35,8 +37,8 @@ export class LoginComponent implements OnDestroy {
 
   private createForm(): FormGroup {
     return this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      username: ['', [Validators.required, Validators.maxLength(this.maxLengthUsername)]],
+      password: ['', [Validators.required, Validators.minLength(this.minLengthPassword)]],
       rememberMe: [false]
     });
   }
